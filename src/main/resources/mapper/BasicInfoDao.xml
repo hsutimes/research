@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hsu.research.dao.BasicInfoDao">
+    <select id="queryBasicInfo" resultType="org.hsu.research.entity.BasicInfo">
+        select  projectno, projectname, hostid, hostname, ktjbdm, ktsxdm, ktlbdm, ktfxdm, xkfldm, jtfsdm, sbdwdm, jflydm,
+       bftjdm, pzsj, wcsj, zjf, member1, member2, member3, member4, member5, sftj, sflx
+        from basicinfo;
+    </select>
+    <select id="queryBasicInfoByNo" resultType="org.hsu.research.entity.BasicInfo">
+        select  projectno, projectname, hostid, hostname, ktjbdm, ktsxdm, ktlbdm, ktfxdm, xkfldm, jtfsdm, sbdwdm, jflydm,
+       bftjdm, pzsj, wcsj, zjf, member1, member2, member3, member4, member5, sftj, sflx
+        from basicinfo
+        where projectno =#{projectno};
+    </select>
+</mapper>

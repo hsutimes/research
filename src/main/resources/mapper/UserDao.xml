@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hsu.research.dao.UserDao">
+    <select id="queryUser" resultType="org.hsu.research.entity.User">
+        select id, name, power from user;
+    </select>
+    <select id="checkUserName" resultType="int">
+        select exists(select *
+        from user
+        where name = #{name}) as result;
+    </select>
+    <select id="queryUserPw" resultType="String">
+        select pw
+        from user
+        where name = #{name} and power = #{power};
+    </select>
+    <select id="queryUserByName" resultType="org.hsu.research.entity.User">
+        select id, name, power
+        from user
+        where name = #{name}
+    </select>
+    <select id="queryUserById" resultType="org.hsu.research.entity.User">
+        select id, name, power
+        from user
+        where id = #{id}
+    </select>
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id" parameterType="org.hsu.research.entity.User">
+        insert into user(pw, name, power)
+        values (#{pw}, #{name}, #{power})
+    </insert>
+    <update id="updateUser" parameterType="org.hsu.research.entity.User">
+        update user
+        <set>
+            <if test="pw!=null">pw=#{pw}</if>
+            <if test="name!=null">name=#{name}</if>
+            <if test="power!=null">power=#{power}</if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="deleteUser">
+        delete
+        from user
+        where id = #{id};
+    </delete>
+</mapper>
